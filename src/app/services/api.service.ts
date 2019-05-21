@@ -23,7 +23,7 @@ export class ApiService {
   updatePolicy(policy: Policy): Observable<Policy>{
     console.log(policy.id);
 
-    return this.httpClient.put<Policy>(this.PHP_API_SERVER+"policies", policy);
+    return this.httpClient.put<Policy>(this.PHP_API_SERVER+"policies/"+policy.id, policy);
   }
 
   deletePolicy(id:number){
