@@ -22,7 +22,10 @@ export class DashboardComponent implements OnInit {
 
   createOrUpdatePolicy(form){
     if(this.selectedPolicy && this.selectedPolicy.id){
+      console.log(this.selectedPolicy);
+      console.log(this.selectedPolicy.id);
       form.value.id = this.selectedPolicy.id;
+      console.log(form.value);
       this.apiService.updatePolicy(form.value).subscribe((policy: Policy) => {
         console.log("Policy updated", policy);
       });
@@ -36,6 +39,7 @@ export class DashboardComponent implements OnInit {
 
   selectPolicy(policy:Policy){
     this.selectedPolicy = policy;
+    console.log(this.selectedPolicy);
   }
 
   deletePolicy(id){

@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  PHP_API_SERVER = "http://localhost/apirestp/public/api/";
+  //PHP_API_SERVER = "http://localhost/apirestp/public/api/";
+  PHP_API_SERVER = "http://localhost:8080/";
+  
   constructor(private httpClient: HttpClient) { }
 
   readPolicies(): Observable<Policy[]>{
@@ -18,12 +20,14 @@ export class ApiService {
     return this.httpClient.post<Policy>(this.PHP_API_SERVER+"policies", policy);
   }
 
-  updatePolicy(policy: Policy){
-    return this.httpClient.put<Policy>('${this.PHP_API_SERVER}/api/update.php', policy);
+  updatePolicy(policy: Policy): Observable<Policy>{
+    console.log(policy.id);
+
+    return this.httpClient.put<Policy>(this.PHP_API_SERVER+"policies", policy);
   }
 
   deletePolicy(id:number){
-    return this.httpClient.delete<Policy>('${this.PHP_API_SERVER}/api/delete.php?id=${id}');
+    return this.httpClient.delete<Policy>(this.PHP_API_SERVER+"policies/"+id);
   }
 
 }
