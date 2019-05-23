@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
 
     }else{
       this.apiService.createPolicy(form.value).subscribe((policy: Policy) => {
+        this.policies.push(policy);
         console.log('Policy created, ', policy);
       });
     }
